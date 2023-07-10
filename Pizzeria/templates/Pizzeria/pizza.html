@@ -1,0 +1,23 @@
+{% extends 'Pizzeria/base.html' %}
+
+{% block content %}
+
+    <p>Pizza: {{pizza}}</p>
+
+    <p>Toppings:</p>
+    <p>
+        <a href="{% url 'Pizzaeria:new_topping' pizza.id %}">Add new topping</a>
+    </p>
+
+    <ul>
+    {% for topping in toppings %}
+        <li>
+            <p>{{ topping.name|linebreaks }}</p>
+            <p>{{ topping.date_added|date:'M d, Y H:i' }}</p>
+            <p>{{ topping.text|linebreaks}}</p>
+        </li>
+    {% empty %}
+        <li>No toppings for this pizza order yet.</li> 
+    {% endfor %}
+    </ul>
+{% endblock content %}
